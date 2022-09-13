@@ -1,10 +1,13 @@
+
 public class Main {
 
 	public static void main(String[] args) 
 	{
-		WaterCar car = new WaterCar(5, 3, 2);
+		BusinessMan bMan = new BusinessMan("Jack", "ACompany", "Student");
 		
-		car.ShowCurrentGauge();
+		System.out.println("My name is " + 		bMan.GetName());
+		System.out.println("My company is " + 	bMan.GetCompany());
+		System.out.println("My position is " + 	bMan.GetPosition());
 	}
 
 }

@@ -1,11 +1,10 @@
-public class Main
-{
+public class Main {
+
 	public static void main(String[] args) 
 	{
-		new Cat();
-		new Dog();
-		new Dog();
+		WaterCar car = new WaterCar(5, 3, 2);
 		
-		System.out.print("생성된 객체의 개수: " + Animal.AnimalCount);
+		car.ShowCurrentGauge();
 	}
+
 }
