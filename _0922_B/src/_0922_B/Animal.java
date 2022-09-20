@@ -1,4 +1,4 @@
-package _0922_A;
+package _0922_B;
 
 public class Animal 
 {
