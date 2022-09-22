@@ -1,59 +1,68 @@
 package _0922_A;
 
-class Person{
-	private String name;
-	public Person(String name) {
-		this.name = name;
-	}
-	public void printPersonMessage() {
-		System.out.println(name+"´Â PersonÀ¸·Î Ä³½ºÆÃÇÒ ¼ö ÀÖ´Ù." );
-	}
-}
+ class Person{
+ 	protected String name;
+ 	public Person(String name) {
+ 		this.name = name;
+ 	}
+ 	public void printPersonMessage() {
+ 		System.out.println(name+"ëŠ” Personìœ¼ë¡œ ìºìŠ¤íŒ…í•  ìˆ˜ ìˆë‹¤." );
+ 	}
+ }
 
-class Student extends Person {
-	public Student(String name) {
-		super(name);
-	}
-}
+ class Student extends Person {
+ 	public Student(String name) {
+ 		super(name);
+ 	}
+ 	public void printStudentMessage() {
+ 		System.out.println(name+"ëŠ” Studentìœ¼ë¡œ ìºìŠ¤íŒ…í•  ìˆ˜ ìˆë‹¤." );
+ 	}
+ }
 
-class Researcher extends Person {
-	public Researcher(String name) {
-		super(name);
-	}
-}
+ class Researcher extends Person {
+ 	public Researcher(String name) {
+ 		super(name);
+ 	}
+ 	public void printResearcherMessage() {
+ 		System.out.println(name+"ëŠ” Resercherìœ¼ë¡œ ìºìŠ¤íŒ…í•  ìˆ˜ ìˆë‹¤." );
+ 	}
+ }
 
-class Professor extends Researcher {
-	public Professor(String name) {
-		super(name);
-	}
-}
+ class Professor extends Researcher {
+ 	public Professor(String name) {
+ 		super(name);
+ 	}
+ 	public void printProfessorMessage() {
+ 		System.out.println(name+"ëŠ” Professorìœ¼ë¡œ ìºìŠ¤íŒ…í•  ìˆ˜ ìˆë‹¤." );
+ 	}
+ }
 
 
-public class Main {
+ public class Main {
 
-	public static void main(String[] args) {
-		Person jee=new Student("jee");
-		Person kim=new Professor("kim");
-		Person lee=new Researcher("lee");
-		if(jee instanceof Person){ 
-			jee.printPersonMessage();
-		}
-		if(jee instanceof Student){
-			System.out.println("jee´Â Student·Î Ä³½ºÆÃÇÒ ¼ö ÀÖ´Ù.");
-		}
-		if(kim instanceof Student){
-			System.out.println("kimÀº Student·Î Ä³½ºÆÃÇÒ ¼ö ÀÖ´Ù.");
-		}
-		if(kim instanceof Professor){
-			System.out.println("kimÀº Professor·Î Ä³½ºÆÃÇÒ ¼ö ÀÖ´Ù.");
-		}
-		if(kim instanceof Researcher){
-			System.out.println("kimÀº Researcher·Î Ä³½ºÆÃÇÒ ¼ö ÀÖ´Ù.");
-		}
-		if(lee instanceof Professor){
-			System.out.println("leeÀº Professor·Î Ä³½ºÆÃÇÒ ¼ö ÀÖ´Ù.");
-		}
+ 	public static void main(String[] args) {
+ 		Person jee=new Student("jee");
+ 		Person kim=new Professor("kim");
+ 		Person lee=new Researcher("lee");
+ 		if(jee instanceof Person){ 
+ 			jee.printPersonMessage();
+ 		}
+ 		if(jee instanceof Student){
+ 			((Student)jee).printStudentMessage();
+ 		}
+ 		if(kim instanceof Student){
+ 			((Student)kim).printStudentMessage();
+ 		}
+ 		if(kim instanceof Professor){
+ 			((Professor)kim).printProfessorMessage();
+ 		}
+ 		if(kim instanceof Researcher){
+ 			((Researcher)kim).printResearcherMessage();
+ 		}
+ 		if(lee instanceof Professor){
+ 			((Professor)lee).printProfessorMessage();
+ 		}
 
-	}
+ 	}
 
-}
+ }
