@@ -38,7 +38,7 @@ public class FriendInfoHandler {
 		System.out.println("입력 완료! \n");
 	}
 
-	public void ShowAllData() {
+	public void ShowAllData() {	// 예제는 myFriends[i].showData()만 해주면 됐지만 각각의 리스트를 전부 출력해줘야한다.
 		for (int i = 0; i < mHighFriends.size(); ++i) {
 			mHighFriends.get(i).ShowData();
 		}
@@ -50,7 +50,7 @@ public class FriendInfoHandler {
 		}
 	}
 
-	public void ShowAllSimpleData() {
+	public void ShowAllSimpleData() {	// 마찬가지
 		for (int i = 0; i < mHighFriends.size(); ++i) {
 			mHighFriends.get(i).ShowBasicInfo();
 		}
