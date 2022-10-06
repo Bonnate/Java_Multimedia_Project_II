@@ -1,7 +1,8 @@
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
-public class InputManager 
+public class InputManager implements KeyListener
 {
 	//Singleton - pattern
 	private static InputManager Instance = null;
@@ -15,7 +16,12 @@ public class InputManager
 		return Instance;
 	}
 	
-	static boolean[] state = {false, false, false, false, false};
+	private InputManager()
+	{
+		GameManager.Instance().AttachKeyListener(this);
+	}
+	
+	static boolean[] state = {false, false, false, false, false, false ,false, false, false, false};
 
 	public void ModifyKey(KeyEvent key, boolean flag)
 	{
@@ -37,9 +43,28 @@ public class InputManager
 			state[3] = flag;
 			break;
 			
-		case KeyEvent.VK_SPACE:
+		case KeyEvent.VK_G:
 			state[4] = flag;
 			break;
+		case KeyEvent.VK_UP:
+			state[5] = flag;
+			break;
+			
+		case KeyEvent.VK_LEFT:
+			state[6] = flag;
+			break;
+
+		case KeyEvent.VK_DOWN:
+			state[7] = flag;
+			break;
+			
+		case KeyEvent.VK_RIGHT:
+			state[8] = flag;
+			break;
+			
+		case KeyEvent.VK_M:
+			state[9] = flag;
+			break;			
 		}
 	}
 	
@@ -59,12 +84,45 @@ public class InputManager
 		case "D":
 			return state[3];
 			
-		case "SPACEBAR":
+		case "G":
 			return state[4];
+			
+		case "UP":
+			return state[5];
+			
+		case "LEFT":
+			return state[6];
+			
+		case "DOWN":
+			return state[7];
+			
+		case "RIGHT":
+			return state[8];
+			
+		case "M":
+			return state[9];
 			
 		default:
 			System.out.println("Null Key Reference Error");
 			return false;
 		}
+	}
+	
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		//None
+	}
+
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    	InputManager.Instance().ModifyKey(e, true);
+    }
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		InputManager.Instance().ModifyKey(e, false);
+
 	}
 }

@@ -1,6 +1,7 @@
 public class main
 {
 	private GameManager mManager;
+	private ObjectManager mInstanceManager;
 
 	//실행
 	public static void main(String[] args) 
@@ -12,16 +13,22 @@ public class main
 	public main() 
 	{
 		mManager = new GameManager();
+		mInstanceManager = ObjectManager.Instance();
 		
-		ObjectManager.Instance().Instantiate(new PlayerObject(28, 20));
-		ObjectManager.Instance().Instantiate(new EnemyObject(20, 1));
-		ObjectManager.Instance().Instantiate(new EnemyObject(36, 1));
-		ObjectManager.Instance().Instantiate(new EnemyObject(28, 3));
+		PlayerObject p1 = (PlayerObject) mInstanceManager.Instantiate(new PlayerObject(24, 20));
+		p1.SetPlayerID(0);
+		
+		PlayerObject p2 = (PlayerObject) mInstanceManager.Instantiate(new PlayerObject(32, 20));
+		p2.SetPlayerID(1);
+		
+		mInstanceManager.Instantiate(new EnemyObject(20, 1));
+		mInstanceManager.Instantiate(new EnemyObject(36, 1));
+		mInstanceManager.Instantiate(new EnemyObject(28, 3));
 		
 		while (true) {
-			ObjectManager.Instance().ManageObject();
+			mInstanceManager.ManageObject();
 			mManager.drawAll();
-			ObjectManager.Instance().Destroy();
+			mInstanceManager.Destroy();
 			
 			try {
 				Thread.sleep(32);
@@ -40,9 +47,9 @@ public class main
 		public void run() {
 			// game loop
 			while (true) {
-				ObjectManager.Instance().ManageObject();
+				mInstanceManager.ManageObject();
 				mManager.drawAll();
-				ObjectManager.Instance().Destroy();
+				mInstanceManager.Destroy();
 				
 				try {
 					Thread.sleep(50);
