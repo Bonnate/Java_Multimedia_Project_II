@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="package _0922_C;"/>
+		<item key="selection" value="mPressedKeys"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="pressedKeys"/>
+			<item value="handler"/>
 			<item value="package _0922_C;"/>
 			<item value="&#x0A;public class Animal {&#x0A;&#x0A;}&#x0A;"/>
 			<item value="main"/>
 		</list>
 		<list key="replacehistory">
+			<item value="mPressedKeys"/>
+			<item value="mManager"/>
 			<item value="Main"/>
 		</list>
 	</section>
