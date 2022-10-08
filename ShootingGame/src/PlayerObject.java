@@ -1,7 +1,7 @@
 public class PlayerObject extends GameObject {
 
 	/** 총알 발사 딜레이 */
-	private float mOriginBulletDelay = 1f;
+	private float mOriginBulletDelay = 0.1f;
 	private float mCurrentBulletDelay;
 
 	/** 좌측 컨트롤 패널을 이용하는가? */
@@ -26,7 +26,6 @@ public class PlayerObject extends GameObject {
 
 	@Override
 	public void Update() {
-		System.out.println(Time.DeltaTime());
 		Move();
 		ShootBullet();
 	}
@@ -54,14 +53,14 @@ public class PlayerObject extends GameObject {
 		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "A" : "LEFT"))) {
 			mPosX -= mSpeed * Time.DeltaTime();
 
-			if (mPosX < GameManager.LEFT_PADDING) {
-				mPosX = GameManager.LEFT_PADDING;
+			if (mPosX < GameManager.LEFT_PADDING + 1) {
+				mPosX = GameManager.LEFT_PADDING + 1;
 			}
 		}
 		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "S" : "DOWN"))) {
 			mPosY += mSpeed * Time.DeltaTime();
 
-			if (mPosY > GameManager.SCREEN_HEIGHT) {
+			if (mPosY > GameManager.SCREEN_HEIGHT - 1) {
 				mPosY = GameManager.SCREEN_HEIGHT - 1;
 			}
 		}

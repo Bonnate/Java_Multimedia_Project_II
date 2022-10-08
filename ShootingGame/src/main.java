@@ -1,5 +1,3 @@
-
-
 public class main {
 	private GameManager mManager;
 	private ObjectManager mInstanceManager;
