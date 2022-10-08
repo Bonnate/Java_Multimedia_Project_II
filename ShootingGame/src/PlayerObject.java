@@ -1,21 +1,24 @@
 public class PlayerObject extends GameObject {
 
 	/** 총알 발사 딜레이 */
-	private float mOriginBulletDelay = 1;
-	private float mCurrentBulletDelay = 0;
+	private float mOriginBulletDelay = 1f;
+	private float mCurrentBulletDelay;
 
-	private int mPlayerID = 0;
+	/** 좌측 컨트롤 패널을 이용하는가? */
+	private boolean mIsLeftCtrl;
+	
+	/** 이동속도 */
+	private float mSpeed;
 
 	public PlayerObject(int posX, int posY) {
 		super(posX, posY, ">-O-<");
+		
+		mSpeed = 50.0f;
 	}
 
 	@Override
 	public void Start() {
 		// TODO Auto-generated method stub
-
-		// debug
-		System.out.print("게임 오브젝트 생성됨");
 
 		// runtime
 		mCurrentBulletDelay = mOriginBulletDelay;
@@ -23,7 +26,7 @@ public class PlayerObject extends GameObject {
 
 	@Override
 	public void Update() {
-
+		System.out.println(Time.DeltaTime());
 		Move();
 		ShootBullet();
 	}
@@ -33,99 +36,57 @@ public class PlayerObject extends GameObject {
 		// TODO Auto-generated method stub
 
 	}
-	
-	public void SetPlayerID(int id)
-	{
-		mPlayerID = id;
+
+	public void ModifyCtrlPanel(boolean flag) {
+		mIsLeftCtrl = flag;
 	}
 
 	private void Move() {
-		if (mPlayerID == 0) {
-			if (InputManager.Instance().GetKey("W")) {
-				--mPosY;
 
-				if (mPosY == -1) {
-					++mPosY;
-				}
+		// 플레이어 ID가 0이면 좌측 컨트롤 패널 사용(WASD G)
+		if (InputManager.Instance().GetKey(mIsLeftCtrl ? "W" : "UP")) {
+			mPosY -= mSpeed * Time.DeltaTime();
+
+			if (mPosY < 0) {
+				mPosY = 0;
 			}
-			if (InputManager.Instance().GetKey("A")) {
-				--mPosX;
-
-				if (mPosX == GameManager.LEFT_PADDING) {
-					++mPosX;
-				}
-			}
-			if (InputManager.Instance().GetKey("S")) {
-				++mPosY;
-
-				if (mPosY == GameManager.SCREEN_HEIGHT) {
-					--mPosY;
-				}
-			}
-			if (InputManager.Instance().GetKey("D")) {
-				++mPosX;
-
-				if (mPosX == GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 2) {
-					--mPosX;
-				}
-			}
-		} else {
-			if (InputManager.Instance().GetKey("UP")) {
-				--mPosY;
-
-				if (mPosY == -1) {
-					++mPosY;
-				}
-			}
-			if (InputManager.Instance().GetKey("LEFT")) {
-				--mPosX;
-
-				if (mPosX == GameManager.LEFT_PADDING) {
-					++mPosX;
-				}
-			}
-			if (InputManager.Instance().GetKey("DOWN")) {
-				++mPosY;
-
-				if (mPosY == GameManager.SCREEN_HEIGHT) {
-					--mPosY;
-				}
-			}
-			if (InputManager.Instance().GetKey("RIGHT")) {
-				++mPosX;
-
-				if (mPosX == GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 2) {
-					--mPosX;
-				}
-			}
-
 		}
+		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "A" : "LEFT"))) {
+			mPosX -= mSpeed * Time.DeltaTime();
 
+			if (mPosX < GameManager.LEFT_PADDING) {
+				mPosX = GameManager.LEFT_PADDING;
+			}
+		}
+		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "S" : "DOWN"))) {
+			mPosY += mSpeed * Time.DeltaTime();
+
+			if (mPosY > GameManager.SCREEN_HEIGHT) {
+				mPosY = GameManager.SCREEN_HEIGHT - 1;
+			}
+		}
+		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "D" : "RIGHT"))) {
+			mPosX += mSpeed * Time.DeltaTime();
+
+			if (mPosX > GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 2) {
+				mPosX = GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 1;
+			}
+		}
 	}
 
 	private void ShootBullet() {
 		// 총알 딜레이
-		--mCurrentBulletDelay;
+		mCurrentBulletDelay -= Time.DeltaTime();
 
-		if (mPlayerID == 0) {
-			if (mCurrentBulletDelay < 0 && InputManager.Instance().GetKey("G")) {
-				if (mPosY == 0) {
-					return;
-				}
-
-				ObjectManager.Instance().Instantiate(new PlayerBullet(mPosX + 2, mPosY));
-				mCurrentBulletDelay = mOriginBulletDelay;
+		if (mCurrentBulletDelay < 0 && InputManager.Instance().GetKey((mIsLeftCtrl ? "G" : "M"))) {
+			if (mPosY == 0) {
+				return;
 			}
-		} else {
-			if (mCurrentBulletDelay < 0 && InputManager.Instance().GetKey("M")) {
-				if (mPosY == 0) {
-					return;
-				}
 
-				ObjectManager.Instance().Instantiate(new PlayerBullet(mPosX + 2, mPosY));
-				mCurrentBulletDelay = mOriginBulletDelay;
-			}
+			ObjectManager.Instance().Instantiate(new BulletObject(mPosX + 2, mPosY));
+			mCurrentBulletDelay = mOriginBulletDelay;
 		}
+
 	}
 
 }

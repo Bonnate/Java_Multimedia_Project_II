@@ -1,124 +1,118 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
-public class InputManager implements KeyListener
-{
-	//Singleton - pattern
+public class InputManager implements KeyListener {
+	// Singleton - pattern
 	private static InputManager Instance = null;
-	public static InputManager Instance()
-	{
-		if(Instance == null) 
-		{
+
+	public static InputManager Instance() {
+		if (Instance == null) {
 			Instance = new InputManager();
 		}
-		
+
 		return Instance;
 	}
-	
-	private InputManager()
-	{
+
+	/** 생성되는 시점에 게임 매니저의 JFrame에 키 리스너를 등록시킨다 */
+	private InputManager() {
 		GameManager.Instance().AttachKeyListener(this);
 	}
-	
-	static boolean[] state = {false, false, false, false, false, false ,false, false, false, false};
 
-	public void ModifyKey(KeyEvent key, boolean flag)
-	{
-		switch(key.getKeyCode())
-		{
+	/** 예약되어 있는 키들이 눌린 상태인지에 대한 불리언 변수들 */
+	private boolean[] mIsPressed = { false, false, false, false, false, false, false, false, false, false };
+
+	/** 키가 입력되면 flag 값대로 해당 키의 상태를 갱신시키는 함수 */
+	public void ModifyKey(KeyEvent key, boolean flag) {
+		switch (key.getKeyCode()) {
 		case KeyEvent.VK_W:
-			state[0] = flag;
+			mIsPressed[0] = flag;
 			break;
-			
+
 		case KeyEvent.VK_A:
-			state[1] = flag;
+			mIsPressed[1] = flag;
 			break;
 
 		case KeyEvent.VK_S:
-			state[2] = flag;
+			mIsPressed[2] = flag;
 			break;
-			
+
 		case KeyEvent.VK_D:
-			state[3] = flag;
+			mIsPressed[3] = flag;
 			break;
-			
+
 		case KeyEvent.VK_G:
-			state[4] = flag;
+			mIsPressed[4] = flag;
 			break;
 		case KeyEvent.VK_UP:
-			state[5] = flag;
+			mIsPressed[5] = flag;
 			break;
-			
+
 		case KeyEvent.VK_LEFT:
-			state[6] = flag;
+			mIsPressed[6] = flag;
 			break;
 
 		case KeyEvent.VK_DOWN:
-			state[7] = flag;
+			mIsPressed[7] = flag;
 			break;
-			
+
 		case KeyEvent.VK_RIGHT:
-			state[8] = flag;
+			mIsPressed[8] = flag;
 			break;
-			
+
 		case KeyEvent.VK_M:
-			state[9] = flag;
-			break;			
+			mIsPressed[9] = flag;
+			break;
 		}
 	}
-	
-	public boolean GetKey(String name)
-	{
-		switch(name)
-		{
+
+	/** 키 이름을 통해 해당 키의 상태를 리턴 */
+	public boolean GetKey(String name) {
+		switch (name) {
 		case "W":
-			return state[0];
-			
+			return mIsPressed[0];
+
 		case "A":
-			return state[1];
-			
+			return mIsPressed[1];
+
 		case "S":
-			return state[2];
-			
+			return mIsPressed[2];
+
 		case "D":
-			return state[3];
-			
+			return mIsPressed[3];
+
 		case "G":
-			return state[4];
-			
+			return mIsPressed[4];
+
 		case "UP":
-			return state[5];
-			
+			return mIsPressed[5];
+
 		case "LEFT":
-			return state[6];
-			
+			return mIsPressed[6];
+
 		case "DOWN":
-			return state[7];
-			
+			return mIsPressed[7];
+
 		case "RIGHT":
-			return state[8];
-			
+			return mIsPressed[8];
+
 		case "M":
-			return state[9];
-			
+			return mIsPressed[9];
+
 		default:
 			System.out.println("Null Key Reference Error");
 			return false;
 		}
 	}
-	
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		//None
+		// None
 	}
 
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    	InputManager.Instance().ModifyKey(e, true);
-    }
+	@Override
+	public void keyPressed(KeyEvent e) {
+		InputManager.Instance().ModifyKey(e, true);
+	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
