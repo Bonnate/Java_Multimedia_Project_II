@@ -15,6 +15,7 @@ public class main {
 		Time.InitDeltaTime();
 		
 		PlayerObject p1 = (PlayerObject) mInstanceManager.Instantiate(new PlayerObject(24, 20));
+		//오브젝트 이름, 태그로 찾는 거 구현 ....
 		p1.ModifyCtrlPanel(true);
 
 		PlayerObject p2 = (PlayerObject) mInstanceManager.Instantiate(new PlayerObject(32, 20));
@@ -28,7 +29,7 @@ public class main {
 			//델타타임 업데이트
 			Time.UpdateDeltaTime();
 			
-			//오브젝트 관리(업데이트 및 버퍼에 쓰)
+			//오브젝트 관리(업데이트 및 버퍼에 쓰기 )
 			mInstanceManager.ManageObject();
 			
 			//오브젝트 모두 그리기

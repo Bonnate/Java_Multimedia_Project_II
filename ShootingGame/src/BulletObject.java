@@ -1,4 +1,3 @@
-
 public class BulletObject extends GameObject 
 {
 	private float mSpeed;
@@ -24,7 +23,7 @@ public class BulletObject extends GameObject
 		mPosY -= mSpeed * Time.DeltaTime();
 		
 		//높이가 0이면.. Destory
-		if(mPosY < 0)
+		if(mPosY < .5f)
 		{
 			Destory();
 		}

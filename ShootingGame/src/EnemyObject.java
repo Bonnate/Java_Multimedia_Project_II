@@ -1,4 +1,3 @@
-
 public class EnemyObject extends GameObject {
 
 	public EnemyObject(float posX, float posY) {

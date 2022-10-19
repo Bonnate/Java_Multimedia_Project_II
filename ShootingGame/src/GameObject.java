@@ -2,6 +2,10 @@
 abstract public class GameObject {
 	protected float mPosX, mPosY;
 	protected String mImage;
+	
+	//2차 프로젝트 업데이트 (Name, Tag 추가)
+	protected String mName;
+	protected String mTag;
 
 	/**
 	 * 삭제 예약인 상태인가를 나타내는 불리언 변수 Destroy가 호출되면 프레임이 끝나는 순간에 제거된다.
