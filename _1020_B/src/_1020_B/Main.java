@@ -130,7 +130,7 @@ class PhoneBookManager
 		int choice=MenuViewer.keyboard.nextInt();
 		MenuViewer.keyboard.nextLine();
 		
-		if(choice > 3) 
+		if(choice > 3 || choice < 1) 
 		{
 			throw new InputException(choice);
 		}
@@ -254,7 +254,7 @@ class Main
 			
 			try
 			{
-				if(choice > 4)
+				if(choice > 4 || choice < 1) 
 				{
 					throw new InputException(choice);									
 				}
