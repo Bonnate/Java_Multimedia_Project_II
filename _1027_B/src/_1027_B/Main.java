@@ -16,7 +16,7 @@ public class Main {
 
 		System.out.println();
 
-		deleteCollection(hSet, "Hong");
+		deleteCollectionByHash(hSet, "Hong");
 		printCollection(hSet.iterator());
 	}
 
@@ -25,11 +25,17 @@ public class Main {
 			itr.next().ShowData();
 	}
 
-	public static void deleteCollection(HashSet<Person> hSet, String name) {
+	/**
+	 * 해쉬 값을 이용하여 해당 오브젝트를 제거 O(1)
+	 */
+	public static void deleteCollectionByHash(HashSet<Person> hSet, String name) {
 		hSet.remove(new Person(name));
 	}
 
-	public static void deleteCollectionSearch(HashSet<Person> hSet, String name) {
+	/**
+	 * 평범한 방식인 순차탐색을 이용하여 해당 오브젝트를 제거 O(n)
+	 */
+	public static void deleteCollectionBySearch(HashSet<Person> hSet, String name) {
 		Iterator<Person> itr = hSet.iterator();
 
 		while (itr.hasNext()) {

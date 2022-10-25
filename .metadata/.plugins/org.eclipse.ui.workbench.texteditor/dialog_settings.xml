@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="mDeltaTime"/>
+		<item key="selection" value="package _1027_B;"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="package _1027_B;"/>
 			<item value="deltaTime"/>
 			<item value="beginTime"/>
 			<item value="lastTime"/>
@@ -15,14 +16,6 @@
 			<item value="fpsDeltaTime"/>
 			<item value="print"/>
 			<item value="drawToBuffer"/>
-			<item value="state"/>
-			<item value="mIsPressed"/>
-			<item value="public class PlayerObject extends GameObject  {"/>
-			<item value="ObjectManager.Instance()."/>
-			<item value="bjectManager.Instance()."/>
-			<item value="pressedKeys"/>
-			<item value="handler"/>
-			<item value="package _0922_C;"/>
 		</list>
 		<list key="replacehistory">
 			<item value="mDeltaTime"/>
