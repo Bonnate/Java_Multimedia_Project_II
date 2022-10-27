@@ -1,3 +1,5 @@
+package Framework;
+
 import java.awt.Font;
 import java.awt.event.KeyListener;
 
@@ -28,6 +30,7 @@ public class GameManager extends JFrame {
 
 	// GAME DATA
 	private int mScore;
+	private String mEndingMessage;
 
 	public GameManager() {
 		// JFrame 생성
@@ -58,11 +61,21 @@ public class GameManager extends JFrame {
 	}
 
 	// GAME SYSTEM
-	/** 점수를 변경시킨다 value값에 따라 점수가 오르거나, 떨어질 수 있다.
-    * @param value 추가하거나 뺄 점수, value > 0 이면 점수가 오른다. */
-	public void ModifyScore(int value)
-	{
+	/**
+	 * 점수를 변경시킨다 value값에 따라 점수가 오르거나, 떨어질 수 있다.
+	 * 
+	 * @param value 추가하거나 뺄 점수, value > 0 이면 점수가 오른다.
+	 */
+	public void ModifyScore(int value) {
 		mScore += value;
+
+		if (mScore >= 80) {
+			StopGame(true);
+		}
+	}
+
+	public void SetScore(int value) {
+		mScore = value;
 	}
 
 	// INPUT
@@ -72,8 +85,12 @@ public class GameManager extends JFrame {
 		textArea.addKeyListener(listener);
 	}
 
-	// DRAW
+	public void StopGame(boolean isWin) {
+		mEndingMessage = isWin ? "You Win!!!" : "You Lose!!";
+		Time.Scale = 0;
+	}
 
+	// DRAW
 	private void ClearBuffer() {
 		for (int y = 0; y < SCREEN_HEIGHT; y++) {
 			for (int x = 0; x < SCREEN_WIDTH; x++) {
@@ -108,6 +125,31 @@ public class GameManager extends JFrame {
 		DrawToBuffer(64, 5, "Score: " + mScore);
 	}
 
+	public void DrawMenu() {
+		for (int i = 20; i < 42; ++i) {
+			buffer[i][10] = '─';
+			buffer[i][11] = ' ';
+			buffer[i][12] = ' ';
+			buffer[i][13] = ' ';
+			buffer[i][14] = ' ';
+			buffer[i][15] = '─';
+		}
+
+		for (int i = 11; i < 15; ++i) {
+			buffer[20][i] = '│';
+			buffer[42][i] = '│';
+		}
+
+		buffer[20][10] = '┌';
+		buffer[20][15] = '└';
+
+		buffer[42][10] = '┐';
+		buffer[42][15] = '┘';
+
+		DrawToBuffer(27, 11, mEndingMessage);
+		DrawToBuffer(21, 14, "Play Again? ( Y / N )");
+	}
+
 	public void DrawToBuffer(int px, int py, String c) {
 		for (int x = 0; x < c.length(); x++) {
 			buffer[px + x][py] = c.charAt(x);
@@ -118,7 +160,17 @@ public class GameManager extends JFrame {
 		buffer[px][py] = c;
 	}
 
-	public void DrawAll() {
+	public void DrawToBuffer(int px, int py, int length, char c) {
+		for (int i = 0; i < length; ++i) {
+			buffer[px + i][py] = c;
+		}
+	}
+
+	public void Render() {
+		if (Time.Scale == 0) {
+			DrawMenu();
+		}
+
 		StringBuilder sb = new StringBuilder();
 		for (int y = 0; y < SCREEN_HEIGHT; y++) {
 			for (int x = 0; x < SCREEN_WIDTH; x++) {

@@ -29,17 +29,10 @@ public class Person {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-
-		if (!(obj instanceof Person))
-			return false;
-		
 		Person other = (Person) obj;
-		if (!this.mName.equals(other.mName))
-			return false;
+		if (this.mName.equals(other.mName))
+			return true;
 		
-		
-		return true;
+		return false;
 	}
 }

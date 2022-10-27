@@ -11,4 +11,14 @@
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="Utility.Rect"/>
+    <fullyQualifiedTypeName name="java.util.Vector"/>
+    <fullyQualifiedTypeName name="Utility.Vector2"/>
+    <fullyQualifiedTypeName name="Framework.InputManager"/>
+    <fullyQualifiedTypeName name="Framework.GameManager"/>
+    <fullyQualifiedTypeName name="Object.RuntimeManager"/>
+    <fullyQualifiedTypeName name="Framework.Time"/>
+    <fullyQualifiedTypeName name="Framework.GameObject"/>
+    <fullyQualifiedTypeName name="Object.Wall"/>
+    <fullyQualifiedTypeName name="Framework.ObjectManager"/>
 </qualifiedTypeNameHistroy>

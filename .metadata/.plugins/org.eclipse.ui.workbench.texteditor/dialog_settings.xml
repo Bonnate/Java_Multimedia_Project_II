@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="package _1027_B;"/>
+		<item key="selection" value="mGameManager"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="mManager"/>
+			<item value="package Framework;"/>
+			<item value="// TODO Auto-generated method stub"/>
+			<item value="// TODO Auto-generated constructor stub"/>
+			<item value="mInstanceManager"/>
+			<item value="mPosX"/>
+			<item value="mPosY"/>
 			<item value="package _1027_B;"/>
 			<item value="deltaTime"/>
-			<item value="beginTime"/>
-			<item value="lastTime"/>
-			<item value="mLastTime"/>
-			<item value="fpsDeltaTime"/>
-			<item value="print"/>
-			<item value="drawToBuffer"/>
 		</list>
 		<list key="replacehistory">
+			<item value="mGameManager"/>
+			<item value=""/>
+			<item value="mObjectManager"/>
+			<item value="mPosition.x"/>
+			<item value="mPosition.y"/>
 			<item value="mDeltaTime"/>
 			<item value="mBeginTime"/>
 			<item value="mLastTime"/>
 			<item value="mFPSDeltaTime"/>
 			<item value="DrawToBuffer"/>
 			<item value="mIsPressed"/>
-			<item value=""/>
 			<item value="mInstanceManager."/>
 			<item value="mInstanceManager"/>
 			<item value="mPressedKeys"/>
 			<item value="mManager"/>
-			<item value="Main"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

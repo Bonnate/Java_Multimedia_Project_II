@@ -1,3 +1,12 @@
+package Object;
+
+import Framework.GameManager;
+import Framework.GameObject;
+import Framework.InputManager;
+import Framework.ObjectManager;
+import Framework.Time;
+import Utility.Vector2;
+
 public class PlayerObject extends GameObject {
 
 	/** 총알 발사 딜레이 */
@@ -6,13 +15,14 @@ public class PlayerObject extends GameObject {
 
 	/** 좌측 컨트롤 패널을 이용하는가? */
 	private boolean mIsLeftCtrl;
-	
+
 	/** 이동속도 */
 	private float mSpeed;
 
-	public PlayerObject(int posX, int posY) {
-		super(posX, posY, ">-O-<");
-		
+
+	public PlayerObject(Vector2 pos, String name) {
+		super(pos, ">-O-<", name, "Player");
+
 		mSpeed = 50.0f;
 	}
 
@@ -22,6 +32,8 @@ public class PlayerObject extends GameObject {
 
 		// runtime
 		mCurrentBulletDelay = mOriginBulletDelay;
+
+		super.AddBoxCollider2D(0, 0, 5, 2);
 	}
 
 	@Override
@@ -32,8 +44,6 @@ public class PlayerObject extends GameObject {
 
 	@Override
 	public void OnDestroy() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void ModifyCtrlPanel(boolean flag) {
@@ -44,31 +54,31 @@ public class PlayerObject extends GameObject {
 
 		// 플레이어 ID가 0이면 좌측 컨트롤 패널 사용(WASD G)
 		if (InputManager.Instance().GetKey(mIsLeftCtrl ? "W" : "UP")) {
-			mPosY -= mSpeed * Time.DeltaTime();
+			Translate(0, -mSpeed * Time.DeltaTime());
 
-			if (mPosY < 0) {
-				mPosY = 0;
+			if (mPosition.y < 0) {
+				Translate(0, 1);
 			}
 		}
 		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "A" : "LEFT"))) {
-			mPosX -= mSpeed * Time.DeltaTime();
+			Translate(-mSpeed * Time.DeltaTime(), 0);
 
-			if (mPosX < GameManager.LEFT_PADDING + 1) {
-				mPosX = GameManager.LEFT_PADDING + 1;
+			if (mPosition.x < GameManager.LEFT_PADDING + 1) {
+				Translate(1, 0);
 			}
 		}
 		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "S" : "DOWN"))) {
-			mPosY += mSpeed * Time.DeltaTime();
+			Translate(0, mSpeed * Time.DeltaTime());
 
-			if (mPosY > GameManager.SCREEN_HEIGHT - 1) {
-				mPosY = GameManager.SCREEN_HEIGHT - 1;
+			if (mPosition.y > GameManager.SCREEN_HEIGHT - 1) {
+				Translate(0, -1);
 			}
 		}
 		if (InputManager.Instance().GetKey((mIsLeftCtrl ? "D" : "RIGHT"))) {
-			mPosX += mSpeed * Time.DeltaTime();
+			Translate(mSpeed * Time.DeltaTime(), 0);
 
-			if (mPosX > GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 2) {
-				mPosX = GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 1;
+			if (mPosition.x > GameManager.SCREEN_WIDTH - GameManager.RIGHT_PADDING - mImage.length() + 2) {
+				Translate(-1, 0);
 			}
 		}
 	}
@@ -78,14 +88,25 @@ public class PlayerObject extends GameObject {
 		mCurrentBulletDelay -= Time.DeltaTime();
 
 		if (mCurrentBulletDelay < 0 && InputManager.Instance().GetKey((mIsLeftCtrl ? "G" : "M"))) {
-			if (mPosY == 0) {
+			if (mPosition.y == 0) {
 				return;
 			}
 
-			ObjectManager.Instance().Instantiate(new BulletObject(mPosX + 2, mPosY));
+			ObjectManager.Instance().Instantiate(new BulletObject(new Vector2(mPosition.x + 2, mPosition.y)));
 			mCurrentBulletDelay = mOriginBulletDelay;
+
+//			System.out.println(mPosition.x + ", " + mPosition.y);
+//			System.out.println(super.GetBoxCollider2D().get(0).GetBox().x + ", " + super.GetBoxCollider2D().get(0).GetBox().y);
 		}
 
 	}
 
+	@Override
+	public void OnTriggerStay(GameObject other) {
+		if (other.GetTag().equals("Enemy")) {
+			Destroy();
+
+			GameManager.Instance().StopGame(false);
+		}
+	}
 }
