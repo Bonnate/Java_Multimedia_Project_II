@@ -12,7 +12,7 @@ public class BulletObject extends GameObject
 	{
 		super(pos, "⇑", "PlayerBullet", "PlayerBullet");
 		
-		mSpeed = 50.0f;
+		mSpeed = 60.0f;
 		
 		super.AddBoxCollider2D(0, 0, 1, 1);
 	}
