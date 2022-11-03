@@ -33,7 +33,8 @@ public class PlayerObject extends GameObject {
 		// runtime
 		mCurrentBulletDelay = mOriginBulletDelay;
 
-		super.AddBoxCollider2D(0, 0, 5, 2);
+		super.AddBoxCollider2D(0, 0, 1, 1);
+		super.AddBoxCollider2D(4, 0, 1, 1);
 	}
 
 	@Override

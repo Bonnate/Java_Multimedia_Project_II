@@ -69,6 +69,8 @@ public class ObjectManager {
 				target.OnDestroy();
 
 				// 제거하기
+				// 자바는 최상위 객체를 null하면, 하위 객체들도 자동적으로 GC(가바지컬렉터)가 잡아준다.
+				// C++와 달리 간편하다(하지만 느림(틱딜레이))
 				target = null;
 				mObjects.remove(i);
 			}
@@ -123,22 +125,17 @@ public class ObjectManager {
 					boxI.get(ii).GetVertexBox(x0I, y0I, x1I, y1I);
 					boxJ.get(jj).GetVertexBox(x0J, y0J, x1J, y1J);
 
-					// System.out.println("I: " + x0I[0] + ", " + y0I[0] + ", " + x1I[0] + ", " +
-					// y1I[0]);
-					// System.out.println("J: " + x0J[0] + ", " + y0J[0] + ", " + x1J[0] + ", " +
-					// y1J[0]);
+					// System.out.println("I: " + x0I[0] + ", " + y0I[0] + ", " + x1I[0] + ", " + y1I[0]);
+					// System.out.println("J: " + x0J[0] + ", " + y0J[0] + ", " + x1J[0] + ", " + y1J[0]);
 
-					if (!(x1J[0] < x0I[0] || x1I[0] < x0J[0] || y1I[0] < y0J[0] || y1J[0] < y0I[0])) // if (x1J >= x0I
-																										// && x1I >= x0J
-																										// && y1I >= y0J
-																										// && y1J >=
-																										// y0I)
+					if (!(x1J[0] < x0I[0] || x1I[0] < x0J[0] || y1I[0] < y0J[0] || y1J[0] < y0I[0])) 
+					// if (x1J >= x0I // && x1I >= x0J // && y1I >= y0J // && y1J >= // y0I)
 					{
-						// 충돌 이벤트 콜백//
+						// 충돌 이벤트 콜백
 						objI.OnTriggerStay(objJ); // objI에게 objJ하고 충돌중임을 알림
 						objJ.OnTriggerStay(objI); // objJ에게 objI하고 충돌줌임을 알림
 
-						// 충돌 발생 시 같은 오브젝트에서는 더 이상 체크를 하지 않
+						// 충돌 발생 시 같은 오브젝트에서는 더 이상 체크를 하지 않도록 한다.
 						return;
 					}
 				}

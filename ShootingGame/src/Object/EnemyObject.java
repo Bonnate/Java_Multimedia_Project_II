@@ -8,16 +8,15 @@ import Utility.Vector2;
 
 public class EnemyObject extends GameObject {
 
+	// 이동속도 (점점 증가하도록)
 	private float mSpeed;
 
-	// 총알 공 타이머
+	// 총알 공격 타이머
 	private float mShootOriginTimer, mShootCurrentTimer;
 
 	// 방향 전환 타이머
 	private float mDirectionOriginTimer, mDirectionCurrentTimer;
 	private boolean mIsLeftDirection;
-
-	private RuntimeManager mRuntimeManager;
 
 	public EnemyObject(Vector2 pos) {
 		super(pos, "[XUX]", "Enemy1", "Enemy");
@@ -32,8 +31,6 @@ public class EnemyObject extends GameObject {
 		mShootOriginTimer = 2.0f;
 
 		mIsLeftDirection = Math.random() > 0.5f ? true : false;
-
-		mRuntimeManager = ((RuntimeManager) ObjectManager.Instance().FindGameObjectFromName("RuntimeManager"));
 	}
 
 	@Override
