@@ -161,6 +161,10 @@ public class Main {
 			System.out.println("데이터가 없습니다.");
 			return;
 		}
+		else
+		{
+			System.out.println("총 " + PersonData.size() + "명을 출력합니다.");
+		}
 
 		for (Person person : PersonData) {
 			person.DisplayInfo();

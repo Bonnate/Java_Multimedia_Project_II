@@ -43,7 +43,9 @@ public class GameManager extends JFrame {
 		setLocationRelativeTo(null);
 
 		textArea.setEditable(false);
-		textArea.setFont(new Font("Courier", Font.PLAIN, 26));
+		
+// 		textArea.setFont(new Font("Courier", Font.PLAIN, 26)); //Mac OS
+		textArea.setFont(new Font("Courier New", Font.PLAIN, 26)); //윈도우 OS
 
 		add(textArea);
 		textArea.setEditable(false);

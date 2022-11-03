@@ -10,7 +10,7 @@ public class BulletObject extends GameObject
 	
 	public BulletObject(Vector2 pos)
 	{
-		super(pos, "⇑", "PlayerBullet", "PlayerBullet");
+		super(pos, "↑", "PlayerBullet", "PlayerBullet");
 		
 		mSpeed = 45.0f;
 		

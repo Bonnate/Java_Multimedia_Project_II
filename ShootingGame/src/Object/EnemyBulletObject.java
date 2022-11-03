@@ -10,7 +10,7 @@ public class EnemyBulletObject extends GameObject
 	
 	public EnemyBulletObject(Vector2 pos)
 	{
-		super(pos, "⇓", "EnemyBullet", "EnemyBullet");
+		super(pos, "↓", "EnemyBullet", "EnemyBullet");
 		
 		mSpeed = 10.0f;
 		
