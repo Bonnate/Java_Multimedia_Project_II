@@ -38,10 +38,6 @@ public class _1117C extends JFrame {
 		label = new JLabel("Press Button", SwingConstants.CENTER);
 		grid.add(label);
 
-		add(grid);
-		setSize(300, 150);
-		setVisible(true);
-
 		MyActionListener listener = new MyActionListener();
 		button1.addActionListener(listener);
 		button2.addActionListener(listener);
