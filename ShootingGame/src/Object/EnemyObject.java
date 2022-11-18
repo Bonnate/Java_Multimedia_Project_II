@@ -19,7 +19,7 @@ public class EnemyObject extends GameObject {
 	private boolean mIsLeftDirection;
 
 	public EnemyObject(Vector2 pos) {
-		super(pos, "[XUX]", "Enemy1", "Enemy");
+		super(pos, "Enemy1", "Enemy");
 	}
 
 	@Override

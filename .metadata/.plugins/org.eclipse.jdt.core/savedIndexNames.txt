@@ -1,6 +1,4 @@
-INDEX VERSION 1.131+/Users/bonnate/Desktop/HNU/Java_Multimedia_Project_II/.metadata/.plugins/org.eclipse.jdt.core
-2026589843.index
+INDEX VERSION 1.131+C:\Users\hnu\Desktop\Java_Multimedia_Project_II\.metadata\.plugins\org.eclipse.jdt.core
+3295694147.index
+319108228.index
 1865797976.index
-1430593726.index
-2529505215.index
-265059845.index

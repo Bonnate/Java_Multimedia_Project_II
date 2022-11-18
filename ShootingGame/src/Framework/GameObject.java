@@ -6,9 +6,9 @@ import Utility.*;
 //런타임 도중 생성될 수 있는 게임 오브젝트 하나
 abstract public class GameObject {
 	protected Vector2 mPosition;
-	protected String mImage;
 	protected String mName;
 	protected String mTag;
+	protected Sprite mSprite;
 	
 	private Vector<BoxCollider2D> mBoxCollider;
 
@@ -16,11 +16,10 @@ abstract public class GameObject {
 	protected boolean mIsDestroy = false;
 
 	/** 게임 오브젝트 생성*/
-	public GameObject(Vector2 position, String image, String name, String tag) {
+	public GameObject(Vector2 position, String name, String tag) {
 		mBoxCollider = new Vector<BoxCollider2D>();
 		
 		mPosition = position;
-		this.mImage = image;
 		this.mName = name;
 		this.mTag = tag;
 	}
@@ -39,7 +38,7 @@ abstract public class GameObject {
 
 	/** mImage를 버퍼에 쓰는 함수 */
 	public void Draw() {
-		GameManager.Instance().DrawToBuffer((int)mPosition.x, (int)mPosition.y, mImage);
+//		GameManager.Instance().DrawToBuffer((int)mPosition.x, (int)mPosition.y, mImage);
 	}
 
 	/** 자기자신 혹은 외부에서 호출될 수 있으며, 프레임이 끝나는 시점에 파괴하도록 예약한다. */

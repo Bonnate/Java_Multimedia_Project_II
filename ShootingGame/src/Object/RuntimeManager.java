@@ -11,7 +11,7 @@ public class RuntimeManager extends GameObject{
 	private float mCurrentDelay;
 	
 	public RuntimeManager() {
-		super(new Vector2(0, 0), "",  "RuntimeManager", "Manager");
+		super(new Vector2(0, 0),  "RuntimeManager", "Manager");
 		// TODO Auto-generated constructor stub
 	}
 

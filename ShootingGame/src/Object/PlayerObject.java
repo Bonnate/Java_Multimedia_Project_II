@@ -21,7 +21,7 @@ public class PlayerObject extends GameObject {
 
 
 	public PlayerObject(Vector2 pos, String name) {
-		super(pos, ">-O-<", name, "Player");
+		super(pos, name, "Player");
 
 		mSpeed = 50.0f;
 	}

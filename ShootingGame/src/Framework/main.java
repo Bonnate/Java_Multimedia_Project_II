@@ -32,7 +32,7 @@ public class main {
 			mObjectManager.ManageObject();
 
 			// 오브젝트 모두 그리기
-			mGameManager.Render();
+//			mGameManager.Render();
 
 			// 오브젝트 제거
 			mObjectManager.Destroy();
