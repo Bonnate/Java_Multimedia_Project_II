@@ -15,15 +15,7 @@ public class BoxCollider2D
 	{
 		mColliderRect = rect;
 	}
-	
-	public void DrawGizmo()
-	{		
-		for(int i = 0;  i < mColliderRect.height; ++i)
-		{
-//			GameManager.Instance().DrawToBuffer((int)mColliderRect.x, (int)mColliderRect.y + i, (int)mColliderRect.width, '◼');			
-		}
-	}
-	
+
 	public Rect GetBox()
 	{
 		return mColliderRect;

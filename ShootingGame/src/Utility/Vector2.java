@@ -10,4 +10,10 @@ public class Vector2
 		this.x = x;
 		this.y = y;
 	}
+	
+	public static Vector2 Normalize(Vector2 vector)
+	{
+	    float length = (float) Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
+	    return new Vector2(vector.x/length, vector.y/length);
+	}
 }

@@ -32,19 +32,17 @@ public class ObjectManager {
 	/** GameObject를 매 프레임마다 업데이트한다. */
 	public void ManageObject() {
 		for (int i = 0; i < mObjects.size(); ++i) {
+			
+			//오브젝트 업데이트
 			mObjects.get(i).Update();
 
-			if (mIsDrawGizmos) {
-				Vector<BoxCollider2D> colliders = mObjects.get(i).GetBoxCollider2D();
-
-				for (BoxCollider2D collider : colliders) {
-					collider.DrawGizmo();
-				}
-			} else {
-				mObjects.get(i).Draw();
+			//스프라이트가 있는경우 그리기
+			if (mObjects.get(i).GetSprite().GetImageLength() != 0) {
+				mObjects.get(i).GetSprite().Draw();
 			}
 		}
 
+		//충돌 검사
 		CheckCollision();
 	}
 
@@ -53,6 +51,7 @@ public class ObjectManager {
 
 		// runtime
 		obj.Start();
+		GameManager.Instance().GetPane().add(obj.GetSprite().GetLabel(), new Integer(obj.GetLayer().ordinal()));
 		mObjects.add(obj);
 
 		return obj;
@@ -67,6 +66,7 @@ public class ObjectManager {
 
 				// 제거하기 전 OnDestroy를 실행한다.
 				target.OnDestroy();
+				GameManager.Instance().GetPane().remove(target.GetSprite().GetLabel());
 
 				// 제거하기
 				// 자바는 최상위 객체를 null하면, 하위 객체들도 자동적으로 GC(가바지컬렉터)가 잡아준다.
@@ -100,6 +100,18 @@ public class ObjectManager {
 
 		return null;
 	}
+	
+	public void ClearAll()
+	{
+		for(GameObject obj : mObjects)
+		{
+			obj.OnDestroy();
+			GameManager.Instance().GetPane().remove(obj.GetSprite().GetLabel());
+			obj = null;
+		}
+		
+		mObjects.clear();
+	}
 
 	public void CheckCollision() {
 		for (int i = 0; i < mObjects.size(); ++i) {
@@ -125,10 +137,12 @@ public class ObjectManager {
 					boxI.get(ii).GetVertexBox(x0I, y0I, x1I, y1I);
 					boxJ.get(jj).GetVertexBox(x0J, y0J, x1J, y1J);
 
-					// System.out.println("I: " + x0I[0] + ", " + y0I[0] + ", " + x1I[0] + ", " + y1I[0]);
-					// System.out.println("J: " + x0J[0] + ", " + y0J[0] + ", " + x1J[0] + ", " + y1J[0]);
+					// System.out.println("I: " + x0I[0] + ", " + y0I[0] + ", " + x1I[0] + ", " +
+					// y1I[0]);
+					// System.out.println("J: " + x0J[0] + ", " + y0J[0] + ", " + x1J[0] + ", " +
+					// y1J[0]);
 
-					if (!(x1J[0] < x0I[0] || x1I[0] < x0J[0] || y1I[0] < y0J[0] || y1J[0] < y0I[0])) 
+					if (!(x1J[0] < x0I[0] || x1I[0] < x0J[0] || y1I[0] < y0J[0] || y1J[0] < y0I[0]))
 					// if (x1J >= x0I // && x1I >= x0J // && y1I >= y0J // && y1J >= // y0I)
 					{
 						// 충돌 이벤트 콜백

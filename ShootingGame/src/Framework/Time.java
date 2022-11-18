@@ -13,7 +13,8 @@ public class Time {
 	/** 델타 타임 시스템 초기화 */
 	public static void InitDeltaTime() {
 		mBeginTime = Instant.now();
-		mFPSmDeltaTime = Duration.ZERO;
+		
+		mLastTime = mFPSmDeltaTime = Duration.ZERO;
 	}
 
 	/** 현 프레임기준 델타타임을 갱신 */

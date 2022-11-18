@@ -9,6 +9,7 @@ abstract public class GameObject {
 	protected String mName;
 	protected String mTag;
 	protected Sprite mSprite;
+	protected Layer mLayer;
 	
 	private Vector<BoxCollider2D> mBoxCollider;
 
@@ -16,12 +17,14 @@ abstract public class GameObject {
 	protected boolean mIsDestroy = false;
 
 	/** 게임 오브젝트 생성*/
-	public GameObject(Vector2 position, String name, String tag) {
-		mBoxCollider = new Vector<BoxCollider2D>();
+	public GameObject(Vector2 position, String name, String tag, Layer layer) {
+		this.mBoxCollider = new Vector<BoxCollider2D>();
 		
-		mPosition = position;
+		this.mPosition = position;
 		this.mName = name;
 		this.mTag = tag;
+		this.mLayer = layer;
+		this.mSprite = new Sprite(this);
 	}
 
 	/** 오브젝트 매니저에 의해 인스턴스 될 경우 한번 호출되는 함수 */
@@ -35,11 +38,6 @@ abstract public class GameObject {
 	
 	/** 콜리전 발생시 호출되는 함수*/
 	abstract public void OnTriggerStay(GameObject other);
-
-	/** mImage를 버퍼에 쓰는 함수 */
-	public void Draw() {
-//		GameManager.Instance().DrawToBuffer((int)mPosition.x, (int)mPosition.y, mImage);
-	}
 
 	/** 자기자신 혹은 외부에서 호출될 수 있으며, 프레임이 끝나는 시점에 파괴하도록 예약한다. */
 	public void Destroy() {
@@ -87,6 +85,12 @@ abstract public class GameObject {
 		return mBoxCollider;
 	}
 	
+	/** 스프라이트 추가 */
+	public void AddSpriteImage(String imagePath)
+	{
+		mSprite.AddImage(imagePath);
+	}
+	
 	public String GetName()
 	{
 		return mName;
@@ -95,5 +99,20 @@ abstract public class GameObject {
 	public String GetTag()
 	{
 		return mTag;
+	}
+	
+	public Sprite GetSprite()
+	{
+		return mSprite;
+	}
+	
+	public Vector2 GetPosition()
+	{
+		return mPosition;
+	}
+	
+	public Layer GetLayer()
+	{
+		return mLayer;
 	}
 }

@@ -20,7 +20,7 @@ public class InputManager implements KeyListener {
 	}
 
 	/** 예약되어 있는 키들이 눌린 상태인지에 대한 불리언 변수들 */
-	private boolean[] mIsPressed = { false, false, false, false, false, false, false, false, false, false, false, false, false };
+	private boolean[] mIsPressed = { false, false, false, false, false, false, false, false, false, false };
 
 	/** 키가 입력되면 flag 값대로 해당 키의 상태를 갱신시키는 함수 */
 	public void ModifyKey(KeyEvent key, boolean flag) {
@@ -62,18 +62,6 @@ public class InputManager implements KeyListener {
 
 		case KeyEvent.VK_M:
 			mIsPressed[9] = flag;
-			break;
-			
-		case KeyEvent.VK_Y:
-			mIsPressed[10] = flag;
-			break;
-			
-		case KeyEvent.VK_N:
-			mIsPressed[11] = flag;
-			break;
-			
-		case KeyEvent.VK_P:
-			mIsPressed[12] = flag;
 			break;			
 		}
 	}
@@ -111,19 +99,17 @@ public class InputManager implements KeyListener {
 		case "M":
 			return mIsPressed[9];
 			
-		case "Y":
-			return mIsPressed[10];
-			
-		case "N":
-			return mIsPressed[11];
-			
-		case "P":
-			return mIsPressed[12];
-			
-
 		default:
 			System.out.println("Null Key Reference Error");
 			return false;
+		}
+	}
+	
+	public void ResetKeyState()
+	{
+		for(int i = 0; i < mIsPressed.length; ++i)
+		{
+			mIsPressed[i] = false;
 		}
 	}
 
@@ -140,6 +126,5 @@ public class InputManager implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		InputManager.Instance().ModifyKey(e, false);
-
 	}
 }

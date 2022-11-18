@@ -2,6 +2,7 @@ package Object;
 import Framework.GameManager;
 import Framework.GameObject;
 import Framework.Time;
+import Utility.Layer;
 import Utility.Vector2;
 
 public class EnemyBulletObject extends GameObject 
@@ -10,11 +11,13 @@ public class EnemyBulletObject extends GameObject
 	
 	public EnemyBulletObject(Vector2 pos)
 	{
-		super(pos, "EnemyBullet", "EnemyBullet");
+		super(pos, "EnemyBullet", "EnemyBullet", Layer.BULLET);
 		
-		mSpeed = 10.0f;
+		mSpeed = 200.0f;
 		
-		super.AddBoxCollider2D(0, 0, 1, 1);
+		super.AddBoxCollider2D(0, 0, 17, 17);
+		
+		AddSpriteImage("./Assets/Enemy/Bullet2.png");
 	}
 
 	@Override
@@ -27,8 +30,7 @@ public class EnemyBulletObject extends GameObject
 		
 		super.Translate(0, mSpeed * Time.DeltaTime());
 		
-		//높이가 0이면.. Destory
-		if(mPosition.y >= GameManager.SCREEN_HEIGHT - 1)
+		if(mPosition.y > GameManager.AREA_HEIGHT)
 		{
 			Destroy();
 		}
@@ -43,7 +45,7 @@ public class EnemyBulletObject extends GameObject
 	public void OnTriggerStay(GameObject other) {
 		if(other.GetTag().equals("Player"))
 		{
-			GameManager.Instance().StopGame(false);
+			GameManager.Instance().DisplayEndingMenu(false);
 			
 			other.Destroy();
 			Destroy();
