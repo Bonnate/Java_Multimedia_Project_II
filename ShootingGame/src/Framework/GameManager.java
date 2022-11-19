@@ -30,7 +30,6 @@ import javax.swing.border.EmptyBorder;
 import Object.Background;
 import Object.EnemyObject;
 import Object.PlayerObject;
-import Object.RuntimeManager;
 import Object.Wall;
 import Utility.Vector2;
 
