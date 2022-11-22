@@ -44,7 +44,8 @@ public class PlayerObject extends GameObject {
 		// runtime
 		mCurrentBulletDelay = mOriginBulletDelay;
 
-		AddBoxCollider2D(10, 10, 42, 60);
+		AddBoxCollider2D(20, 10, 22, 60);
+		AddBoxCollider2D(10, 30, 42, 30);
 
 		AddSpriteImage("./Assets/Player/Player_anim1.png");
 		AddSpriteImage("./Assets/Player/Player_anim2.png");
