@@ -33,10 +33,13 @@
     <fullyQualifiedTypeName name="javax.swing.border.EmptyBorder"/>
     <fullyQualifiedTypeName name="javax.swing.JLabel"/>
     <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
-    <fullyQualifiedTypeName name="java.awt.Image"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="java.awt.Container"/>
     <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
     <fullyQualifiedTypeName name="java.awt.RenderingHints"/>
     <fullyQualifiedTypeName name="java.util.Vector"/>
+    <fullyQualifiedTypeName name="java.awt.Image"/>
+    <fullyQualifiedTypeName name="javax.swing.JApplet"/>
+    <fullyQualifiedTypeName name="java.awt.Graphics"/>
+    <fullyQualifiedTypeName name="javax.swing.Icon"/>
 </qualifiedTypeNameHistroy>

@@ -17,7 +17,7 @@ public class Explosion extends GameObject{
 		// TODO Auto-generated constructor stub
 		for(int i = 1; i <=25; ++i)
 		{
-			AddSpriteImage("./Assets/Particles/BigExplosion/bigExp" + i + ".jpg");			
+			AddSpriteImage("./Assets/Particles/BigExplosion/bigExp" + i + ".png");			
 		}
 		
 		mSprite.SetAnimDelay(0.025f);
