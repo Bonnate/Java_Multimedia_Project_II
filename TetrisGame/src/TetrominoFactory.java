@@ -22,6 +22,7 @@ public class TetrominoFactory {
 
 	public static Tetromino getNewTetromino() {
 		int next = rand.nextInt(8);
+		next = 7;
 		switch (next) {
 		case 0:
 			return new O(START_X, START_Y, tetrominoColors[next]);
